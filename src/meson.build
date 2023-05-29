@@ -1,4 +1,4 @@
-main_source = files('main.cc')
+main_source = files('main.cpp')
 project_sources += main_source
 subdir('foo')
 subdir('bar')

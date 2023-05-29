@@ -1,8 +1,5 @@
-#include <iostream>
-#include "bar/bar.h"
-#include "baz/baz.h"
-#include "fizz/fizz.h"
-#include "foo/foo.h"
+#include "main.h"
+
 
 int main() {
   std::cout << "Hello world!" << std::endl;

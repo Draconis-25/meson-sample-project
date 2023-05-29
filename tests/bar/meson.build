@@ -20,4 +20,3 @@ test('bar test', bartest)
 
 all_test_deps += bartest_deps
 all_test_dep_libs += bartest_lib_deps
-project_benchmark_sources += files(bartest_sources)

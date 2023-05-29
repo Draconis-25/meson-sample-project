@@ -20,4 +20,3 @@ test('foo test', footest)
 
 all_test_deps += footest_deps
 all_test_dep_libs += footest_lib_deps
-project_benchmark_sources += files(footest_sources)

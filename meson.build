@@ -10,7 +10,6 @@ library_path = []
 project_sources = []
 project_header_files = []
 project_test_sources = []
-project_benchmark_sources = []
 
 inc = [include_directories('include')]
 
@@ -35,35 +34,19 @@ sample_cpp_project_bin_dep_libs = [
 sample_cpp_project_bin = executable('sample_cpp_project_bin', 
   main_source, 
   include_directories : inc, 
+  cpp_pch : 'pch/pch.h',
   dependencies : sample_cpp_project_bin_deps,
   link_with : sample_cpp_project_bin_dep_libs)
 
 gtest = subproject('gtest')
-benchmark = subproject('benchmark')
 
 if get_option('enable-tests')
   subdir('tests')
 endif
-if get_option('enable-benchmarks')
-  subdir('benchmarks')
-endif
 
 subdir('docs')
-
-# This adds the clang format file to the build directory
-configure_file(input : '.clang-format',
-               output : '.clang-format',
-	       copy: true)
-run_target('format',
-  command : ['clang-format','-i','-style=file',project_sources,project_test_sources,project_benchmark_sources,project_header_files])
 
 # This regex excludes any sources from the third_party, tests, benchmarks 
 # and gtest related files.
 regex = '^((?!(third_party|tests|benchmarks|gtest)).)*$'
-# This adds clang tidy support
-configure_file(input : '.clang-tidy',
-               output : '.clang-tidy',
-               copy : true)
-run_target('tidy',
-  command : ['run-clang-tidy.py','-fix', '-j' , '8', 'files', regex ,'-format', '-p='+ meson.build_root()])
 
