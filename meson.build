@@ -27,7 +27,6 @@ sample_cpp_project_bin_deps = [
 
 sample_cpp_project_bin_dep_libs = [
   foo_lib,
-  bar_lib,
   baz_lib,
 ]
 
